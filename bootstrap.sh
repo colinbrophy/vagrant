@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-yum install -y apache2
-if ! [ -L /var/www ]; then
-  rm -rf /var/www
-  ln -fs /vagrant /var/www
-fi
+setenforce 0
+yum install -y httpd
+
+rmdir /var/www/html
+ln -sf /vagrant /var/www/html
+cd /var/www/html
+#chown apache.apache index.html
+
+systemctl enable --now httpd
 
