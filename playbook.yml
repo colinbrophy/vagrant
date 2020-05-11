@@ -1,5 +1,6 @@
 - hosts: all 
   become: yes
+  gather_facts: no
   tasks:
   - name: ensure apache is at the latest version
     yum:
